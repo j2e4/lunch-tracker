@@ -5,21 +5,29 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
+    import Vue from "vue";
+    // import Papa from "papaparse";
+    // import axios from "axios";
+    import datasource from "@/data/datasource.json";
+
 
     export default Vue.extend({
-        name: 'JsonParsingTestPane',
-        data() {
-            return {
-
-            }
-        },
+        name: "JsonParsingTestPane",
+        // data() {
+        //     return {
+        //         fileContentStr: undefined as string
+        //     }
+        // },
         created() {
-
+            (async () => {
+                // const test = await fetch('[filepath]/json/docs.json');
+                // const test = await axios.get('@/main.ts');
+                console.log(datasource);
+            })();
         },
-        methods: {
-
-        }
+        // methods: {
+        //
+        // }
     });
 </script>
 
