@@ -5,7 +5,7 @@
             |
             <router-link to="/home">Vue</router-link>
         </div>
-        <router-view/>
+        <router-view />
     </div>
 </template>
 

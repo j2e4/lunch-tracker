@@ -26,7 +26,8 @@
         { headerName: "가격", field: "price" },
         { headerName: "식당", field: "place" }
     ];
-    const placeMapById: NumberKeyObject =
+    // prettier-ignore
+    const placeMapById: NumberKeyObject = 
         DataLoader.place.reduce((res: NumberKeyObject, p: Place) => {
             res[p.id] = p;
             return res;
@@ -65,8 +66,9 @@
                     date: l.date,
                     name: l.menu,
                     price: l.price,
-                    place: placeMapById[l.placeId] ?
-                        placeMapById[l.placeId].name : l.placeId
+                    place: placeMapById[l.placeId]
+                        ? placeMapById[l.placeId].name
+                        : l.placeId
                 }));
                 this.gridApi.setRowData(rowData);
             }
