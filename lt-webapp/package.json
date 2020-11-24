@@ -52,6 +52,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "prettier": {
+    "arrowParens": "avoid",
     "tabWidth": 4,
     "printWidth": 80,
     "vueIndentScriptAndStyle": true
