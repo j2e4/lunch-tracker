@@ -14,5 +14,5 @@ export interface Place {
 
 // util
 export interface NumberKeyObject {
-    [key: number]: any
+    [key: number]: any;
 }
