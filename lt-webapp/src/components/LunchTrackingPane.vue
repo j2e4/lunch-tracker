@@ -11,6 +11,7 @@
 <script lang="ts">
     import AgGridVue from "@/common/AgGridVue.ts";
     import Vue from "vue";
+    import * as FormatUtil from "@/common/FormatUtil.ts";
     import * as DataLoader from "@/common/DataLoader.ts";
     import { NumberKeyObject, Place } from "@/common/TypeDef";
     import {
@@ -21,13 +22,23 @@
     } from "@ag-grid-community/all-modules";
 
     const columnDefs: Array<ColDef> = [
-        { headerName: "일시", field: "date" },
+        {
+            headerName: "일시",
+            field: "date",
+            valueFormatter: param => FormatUtil.dateToDateOnlyStr(param.value)
+        },
         { headerName: "메뉴", field: "name" },
-        { headerName: "가격", field: "price" },
+        {
+            headerName: "가격",
+            field: "price",
+            cellStyle: { "text-align": "right" },
+            valueFormatter: param =>
+                param.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        },
         { headerName: "식당", field: "place" }
     ];
     // prettier-ignore
-    const placeMapById: NumberKeyObject = 
+    const placeMapById: NumberKeyObject =
         DataLoader.place.reduce((res: NumberKeyObject, p: Place) => {
             res[p.id] = p;
             return res;
