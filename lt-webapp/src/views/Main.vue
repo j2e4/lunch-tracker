@@ -20,7 +20,8 @@
 <script lang="ts">
     import Vue from "vue";
     // import DummyPane from "@/components/DummyPane.vue";
-    import LunchTrackingPane from "@/components/LunchTrackingPane.vue";
+    import LunchChartPane from "@/components/LunchChartPane.vue";
+    import LunchGridPane from "@/components/LunchGridPane.vue";
     import { VueClass } from "vue-class-component/lib/declarations";
 
     export interface Pane {
@@ -50,7 +51,12 @@
                 {
                     id: "grid",
                     icon: "table",
-                    component: LunchTrackingPane
+                    component: LunchGridPane
+                },
+                {
+                    id: "chart",
+                    icon: "chart-line",
+                    component: LunchChartPane
                 }
             ];
         },

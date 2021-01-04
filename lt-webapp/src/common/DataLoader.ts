@@ -1,6 +1,6 @@
 import datasource from "@/data/datasource.json";
 import * as FormatUtil from "@/common/FormatUtil";
-import { Lunch, Place } from "@/common/TypeDef";
+import { Lunch, NumberKeyObject, Place } from "@/common/TypeDef";
 
 const NullString = "";
 
@@ -18,6 +18,14 @@ export const place: Array<Place> = datasource.place.map(p => ({
     name: p.name
 }));
 Object.freeze(place);
+
+// prettier-ignore
+export const placeById: NumberKeyObject = place.reduce(
+    (res: NumberKeyObject, p: Place) => {
+        res[p.id] = p;
+        return res;
+    }, {});
+Object.freeze(placeById);
 
 export const lunch: Array<Lunch> = datasource.lunch.map(l => ({
     id: l.no,

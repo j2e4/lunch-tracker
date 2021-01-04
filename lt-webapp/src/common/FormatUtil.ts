@@ -6,12 +6,12 @@ function substringAsNumber(str: string, start: number, end: number): number {
     return Number(str.substring(start, end));
 }
 
-export function dateToDateOnlyStr(date: Date): string {
+export function dateToDateOnlyStr(date: Date, separater = "-"): string {
     return [
         numberPadStartWithZero(date.getFullYear(), 4),
         numberPadStartWithZero(date.getMonth() + 1, 2),
         numberPadStartWithZero(date.getDate(), 2)
-    ].join("-");
+    ].join(separater);
 }
 
 // TODO Type을 define하는 방법도 있는지 찾아보자.
@@ -28,4 +28,8 @@ export function getDateFromDateOnlyStr(dateOnlyStr: string): Date {
         0,
         0
     );
+}
+
+export function getNumberStringWithComma(numberValue: number): string {
+    return String(numberValue).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
