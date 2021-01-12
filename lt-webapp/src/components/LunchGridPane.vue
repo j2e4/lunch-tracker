@@ -1,5 +1,5 @@
 <template>
-    <div class="lt-lunch-tracking-pane">
+    <div class="lt-lunch-grid-pane">
         <AgGridVue
             class="ag-theme-balham lt-grid-size"
             :grid-options="gridOptions"
@@ -13,7 +13,6 @@
     import Vue from "vue";
     import * as FormatUtil from "@/common/FormatUtil.ts";
     import * as DataLoader from "@/common/DataLoader.ts";
-    import { NumberKeyObject, Place } from "@/common/TypeDef";
     import {
         AgGridEvent,
         ColDef,
@@ -33,19 +32,13 @@
             field: "price",
             cellStyle: { "text-align": "right" },
             valueFormatter: param =>
-                param.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                FormatUtil.getNumberStringWithComma(param.value)
         },
         { headerName: "식당", field: "place" }
     ];
-    // prettier-ignore
-    const placeMapById: NumberKeyObject =
-        DataLoader.place.reduce((res: NumberKeyObject, p: Place) => {
-            res[p.id] = p;
-            return res;
-        }, {});
 
     export default Vue.extend({
-        name: "LunchTrackingPane",
+        name: "LunchGridPane",
         components: {
             AgGridVue
         },
@@ -77,8 +70,8 @@
                     date: l.date,
                     name: l.menu,
                     price: l.price,
-                    place: placeMapById[l.placeId]
-                        ? placeMapById[l.placeId].name
+                    place: DataLoader.placeById[l.placeId]
+                        ? DataLoader.placeById[l.placeId].name
                         : l.placeId
                 }));
                 this.gridApi.setRowData(rowData);
@@ -88,7 +81,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .lt-lunch-tracking-pane {
+    .lt-lunch-grid-pane {
         position: absolute;
         top: 0;
         right: 0;
