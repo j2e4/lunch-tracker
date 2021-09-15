@@ -24,7 +24,7 @@
     import LunchGridPane from "@/components/LunchGridPane.vue";
     import { VueClass } from "vue-class-component/lib/declarations";
 
-    export interface Pane {
+    interface Pane {
         id: string;
         icon: string;
         component?: VueClass<Vue>;
